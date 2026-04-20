@@ -1,0 +1,14 @@
+@reference '../../../styles.css';
+
+.input {
+    @apply w-full 
+    rounded border border-transparent bg-ghost-light   outline-none 
+    text-body-2
+    py-[13px] px-6 transition-colors
+    active:border-brand-blue hover:border-brand-blue focus:border-brand-blue;
+}
+.text-input {
+    @apply h-10;
+}
+.text-area {
+}

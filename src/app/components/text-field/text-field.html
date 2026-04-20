@@ -1,0 +1,40 @@
+<div class="w-full block">
+  <p class="mb-2 text-body-m text-brand-grey-medium">{{ label() }}</p>
+
+  <div class="">
+    @if (type() === 'input') {
+      <input
+        type="text"
+        [placeholder]="placeholder()"
+        [value]="value()"
+        [disabled]="disabled()"
+        (input)="onInput($event)"
+        (blur)="onBlur()"
+        class="input text-input"
+        [ngClass]="{
+          'border-brand-red!': showError,
+        }"
+      />
+    } @else if (type() === 'textarea') {
+      <textarea
+        rows="4"
+        [placeholder]="placeholder()"
+        [disabled]="disabled()"
+        (input)="onInput($event)"
+        (blur)="onBlur()"
+        [value]="value()"
+        class="input text-area"
+        [ngClass]="{
+          'border-brand-red!': showError,
+        }"
+      >
+      </textarea>
+    }
+
+    @if (showError) {
+      <span class="pointer-events-none mt-1 text-body-l text-brand-red">
+        {{ errorMessage() }}
+      </span>
+    }
+  </div>
+</div>
