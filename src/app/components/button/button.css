@@ -1,0 +1,67 @@
+@reference '../../../styles.css';
+
+/* ---- Base ---- */
+:host(.base-button) {
+    @apply font-bold transition-colors cursor-pointer   
+    text-sm tracking-normal
+
+    px-10 pt-[13px] pb-[11px]
+    text-ghost-white2
+    rounded-[10px];
+}
+
+/* ---- Purple ---- */
+:host(.purple-button) {
+    @apply bg-brand-purple  hover:bg-brand-purple/50;
+}
+:host(.purple-button.disabled) {
+    @apply bg-brand-purple/50 cursor-default pointer-events-none;
+}
+
+/* ---- Blue (secondary) ---- */
+:host(.blue-button) {
+    @apply bg-brand-blue  hover:bg-brand-blue/50;
+}
+:host(.blue-button.disabled) {
+    @apply bg-brand-blue/50  cursor-default pointer-events-none;
+}
+
+/* ---- Dark ---- */
+:host(.dark-button) {
+    @apply bg-navy-dark  hover:bg-navy-dark/50;
+}
+:host(.dark-button.disabled) {
+    @apply bg-navy-dark/50 cursor-default pointer-events-none;
+}
+
+/* ---- Red (destructive) ---- */
+:host(.red-button) {
+    @apply bg-brand-red  hover:bg-brand-red/50;
+}
+:host(.red-button.disabled) {
+    @apply bg-brand-red/50 cursor-default pointer-events-none;
+}
+
+/* ---- Red (destructive) ---- */
+:host(.transparent-button) {
+    @apply bg-transparent;
+}
+:host(.red-button.disabled) {
+    @apply cursor-default pointer-events-none;
+}
+
+/* ---- Link ---- */
+:host(.link-button) {
+    @apply bg-transparent text-navy-dark font-bold underline-offset-2 hover:underline cursor-pointer;
+}
+:host(.link-button.disabled) {
+    @apply text-navy-dark cursor-default pointer-events-none;
+}
+
+/* ---- Icon ---- */
+:host(.has-icon) {
+    @apply inline-flex items-center justify-center  py-4 px-10 items-center gap-2;
+}
+:host(.has-icon) .icon {
+    @apply text-sm leading-none;
+}
