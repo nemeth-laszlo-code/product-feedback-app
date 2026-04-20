@@ -1,3 +1,52 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import 'tailwindcss';
+@import "tailwindcss";
+
+@theme {
+    /* Elsődleges színek */
+    --color-brand-purple: #ad1fea;
+    --color-brand-blue: #4661e6;
+    --color-brand-sky: #62bcfa;
+    --color-brand-peach: #f49f85;
+    --color-brand-red: #d73737;
+
+    /* Sötét árnyalatok és semleges színek */
+    --color-navy-dark: #3a4374;
+    --color-navy-muted: #647196;
+
+    /* Háttérszínek */
+    --color-ghost-white: #ffffff;
+    --color-ghost-light: #f7f8fd;
+    --color-ghost-shimmer: #f2f4ff;
+    --color-ghost-white2: #f2f4fe;
+
+    --font-primary: "Jost", sans-serif;
+}
+
+@layer utilities {
+    .text-h1 {
+        @apply tracking-[-0.33px] text-2xl leading-8.5 font-bold opacity-[96%];
+    }
+    .text-h2 {
+        @apply tracking-[-0.25px] text-xl leading-[29px] font-bold;
+    }
+    .text-h3 {
+        @apply tracking-[-0.25px] text-lg leading-[26px] font-bold;
+    }
+    .text-h4 {
+        @apply tracking-[-0.2px] text-sm leading-[20px] font-bold;
+    }
+
+    .text-body-1 {
+        @apply tracking-[0px] text-[1rem] leading-[20px] font-normal;
+    }
+    .text-body-2 {
+        @apply tracking-[0px] text-[0.940rem] leading-[22px] font-normal;
+    }
+    .text-body-3 {
+        @apply tracking-[0px] text-[0.815rem] leading-[19px] font-normal;
+    }
+}
+body {
+    @apply font-primary text-navy-dark;
+}
