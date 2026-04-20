@@ -3,7 +3,7 @@
 /* ---- Base ---- */
 :host(.base-button) {
     @apply font-bold transition-colors cursor-pointer   
-    text-sm tracking-normal
+    text-sm tracking-normal text-nowrap
 
     px-10 pt-[13px] pb-[11px]
     text-ghost-white2
@@ -52,7 +52,7 @@
 
 /* ---- Link ---- */
 :host(.link-button) {
-    @apply bg-transparent text-navy-dark font-bold underline-offset-2 hover:underline cursor-pointer;
+    @apply bg-transparent text-navy-dark font-bold underline-offset-2 hover:underline cursor-pointer text-nowrap;
 }
 :host(.link-button.disabled) {
     @apply text-navy-dark cursor-default pointer-events-none;
