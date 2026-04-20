@@ -1,0 +1,20 @@
+@reference '../../../styles.css';
+
+.dropdown {
+    @apply flex h-12 w-full items-center justify-between rounded-[5px] border border-transparent bg-ghost-light px-6 py-[13px] text-body-1 cursor-pointer  focus:border-brand-blue transition-colors;
+
+    &.opened {
+        @apply rounded-bl-none rounded-br-none rounded-[10px]  text-navy-muted active:border-transparent focus:border-transparent bg-ghost-white! z-100 relative;
+    }
+}
+.dropdown-list {
+    @apply mt-0 absolute w-full rounded-b-[10px] flex flex-col gap-0 
+    text-navy-muted bg-ghost-white   shadow-[0_10px_40px_rgba(55,63,104,0.35)] z-20;
+
+    & li:not(:last-child) {
+    }
+}
+
+.dropdown-list-item {
+    @apply w-full text-left px-6 py-3 text-body-1 transition-colors  cursor-pointer border-t border-ghost-grey/15 hover:text-brand-purple;
+}
