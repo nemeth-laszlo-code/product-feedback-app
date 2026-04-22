@@ -3,14 +3,23 @@
     @apply bg-ghost-white2 uppercase text-body-3 w-fit rounded-[10px]
     
     hover:bg-ghost-light-blue cursor-pointer transition-colors
-    active:bg-brand-blue focus:bg-brand-blue
-    active:text-ghost-white focus:text-ghost-white select-none;
+     select-none;
 }
 
 .badge-default {
-    @apply font-semibold py-1.5 px-4;
+    @apply font-semibold py-1.5 px-4 text-brand-blue;
 }
 
 .badge-with-icon {
-    @apply font-bold flex flex-col gap-2 pt-[14px] pb-2 px-[11px] items-center;
+    @apply font-bold flex gap-2 px-[11px] items-center;
+}
+.badge-with-icon.horizontal {
+    @apply flex-row p-2;
+}
+.badge-with-icon.vertical {
+    @apply flex-col pt-[14px] pb-2;
+}
+.selected {
+    @apply bg-brand-blue 
+    text-ghost-white  hover:bg-brand-blue/80;
 }

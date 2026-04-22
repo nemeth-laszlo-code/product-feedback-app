@@ -87,5 +87,9 @@
     }*/
 }
 body {
-    @apply font-primary text-navy-dark;
+    @apply font-primary text-navy-dark bg-ghost-light;
+}
+
+.card {
+    @apply p-6 bg-ghost-white rounded-[10px];
 }
