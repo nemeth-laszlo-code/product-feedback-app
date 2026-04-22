@@ -1,0 +1,22 @@
+<header class="bg-navy-dark flex items-center py-[8px] px-4 lg:rounded-[10px] select-none">
+  <img
+    src="suggestions/icon-suggestions.svg"
+    alt="suggestion icon"
+    title="suggestion icon"
+    class="hidden lg:block"
+  />
+  <h2 class="text-h3 text-ghost-white ml-4 hidden lg:block">
+    {{ store.suggestions().length }} suggestions
+  </h2>
+
+  @
+
+  <app-select
+    [options]="selectItems"
+    class="lg:ml-[38px]"
+    (selectEvt)="onSort($event)"
+  ></app-select>
+  <button appButton variant="purple" class="ml-auto" routerLink="/new-feedback">
+    + Add Feedback
+  </button>
+</header>
