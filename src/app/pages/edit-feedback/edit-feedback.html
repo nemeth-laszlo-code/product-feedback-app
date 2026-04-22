@@ -1,0 +1,68 @@
+<div class="lg:max-w-[540px] mx-auto mt-[92px] px-6 lg:px-0">
+  <div class="">
+    <button appButton variantType="link" [icon]="'caret'" routerLink="/" class="pl-0!">
+      Go Back
+    </button>
+  </div>
+
+  <form
+    class="px-6 pb-6 pt-[44px] lg:pb-[40px] lg:pt-[52px] lg:px-[42px] rounded-[10px] relative mt-[55px] bg-ghost-white mb-[100px]"
+    [formGroup]="editFeedbackFrom"
+    (submit)="onSubmit()"
+  >
+    <img
+      src="shared/icon-edit-feedback.svg"
+      alt="edit feedback icon"
+      title="edit feedback icon"
+      class="w-10 aspect-square lg:w-14 absolute top-[-20px] lg:top-[-28px]"
+    />
+    <h2 class="text-h3 lg:text-h1">Editing ‘{{ store.selectedRequest()?.title }}‘</h2>
+    <app-text-field
+      [type]="'input'"
+      label="Feedback Title"
+      info="Add a short descriptive headline"
+      class="mt-10 block"
+      formControlName="title"
+    ></app-text-field>
+
+    <app-dropdown
+      [label]="'Category'"
+      [info]="'Choose a category for your feedback'"
+      [options]="categoryDropdownItems"
+      formControlName="category"
+      class="mt-6 block"
+    ></app-dropdown>
+
+    <app-dropdown
+      [label]="'Update Status'"
+      [info]="'Change feature state'"
+      [options]="statusDropdownItems"
+      class="mt-6 block"
+      formControlName="status"
+    ></app-dropdown>
+
+    <app-text-field
+      [type]="'textarea'"
+      label="Feedback Detail"
+      info="Add a short descriptive headline"
+      class="mt-6 block"
+      formControlName="detail"
+    ></app-text-field>
+
+    <div class="flex flex-col-reverse justify-end gap-4 mt-8 lg:flex-row lg:justify-start">
+      <button appButton variant="red" type="button" (click)="onDelete(store.selectedRequestId()!)">
+        Delete
+      </button>
+      <button
+        appButton
+        variant="dark"
+        type="button"
+        class="lg:ml-auto"
+        (click)="router.navigate(['/'])"
+      >
+        Cancel
+      </button>
+      <button appButton variant="purple" type="submit">Save Changes</button>
+    </div>
+  </form>
+</div>
