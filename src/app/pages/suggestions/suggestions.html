@@ -1,0 +1,57 @@
+<main
+  class="flex max-w-[1440px] mx-auto lg:gap-7.5 lg:mt-[56px] xl:mt-[94px] flex-col xl:flex-row lg:px-10"
+>
+  <section class="xl:flex-1/5">
+    <app-side-bar></app-side-bar>
+  </section>
+  <section class="flex-1 xl:flex-4/5">
+    <app-header></app-header>
+    <div class="lg:space-y-5">
+      @for (suggestion of store.suggestions(); track suggestion.id) {
+        <div class="py-[28px] px-8 bg-ghost-white rounded-[10px] flex lg:gap-10 select-none">
+          <div>
+            <app-badge [icon]="'caret'">{{ suggestion.upvotes }}</app-badge>
+          </div>
+          <div>
+            <h3
+              class="text-h3 cursor-pointer!"
+              (click)="store.selectRequest(suggestion.id)"
+              [routerLink]="'/feedback-detail/' + suggestion.id"
+            >
+              {{ suggestion.title }}
+            </h3>
+            <p class="text-body-1 mt-1">
+              {{ suggestion.description }}
+            </p>
+            <app-badge class="mt-3 inline-block">{{ suggestion.category }}</app-badge>
+            <div></div>
+          </div>
+          @let commentsCount = suggestion.comments ? suggestion.comments.length : 0;
+          <span
+            class="text-body-1 font-bold flex items-center gap-2 ml-auto"
+            [class.text-navy-dark/50]="commentsCount === 0"
+          >
+            <img src="shared/icon-comments.svg" alt="comment icon" title="comment icon" />
+
+            {{ commentsCount }}
+          </span>
+        </div>
+      } @empty {
+        <!--Átnézni-->
+        <div
+          class="py-[110px] px-[200px] bg-ghost-white rounded-[10px] select-none flex flex-col items-center"
+        >
+          <img src="suggestions/illustration-empty.svg" alt="empty logo" title="empty logo" />
+          <h2 class="text-h2 mt-[53px]">There is no Feedback yet.</h2>
+          <p class="text-body-1 mt-4">
+            Got a suggestion? Found a bug that needs to be squashed? We love hearing about new ideas
+            to improve our app.
+          </p>
+          <button appButton variant="purple" class="mt-[46px]" routerLink="/new-feedback">
+            + Add Feedback
+          </button>
+        </div>
+      }
+    </div>
+  </section>
+</main>
