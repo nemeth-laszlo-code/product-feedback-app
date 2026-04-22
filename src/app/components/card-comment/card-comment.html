@@ -1,0 +1,44 @@
+@let comment = commentItem();
+@let user = comment.user;
+
+@let rName = replayName();
+<div>
+  <div class="flex">
+    <div class="text-body-3">
+      <h3 class="font-bold">{{ user.name }}</h3>
+      <span class="text-muted">@{{ user.username }}</span>
+    </div>
+    <button class="font-bold text-brand-blue ml-auto cursor-pointer" (click)="toggleReplyComment()">
+      Reply
+    </button>
+  </div>
+  <p class="mt-4 lg:mt-4.5 lg:ml-0 ml-[calc((40px+16px)*-1)]">
+    @if (rName) {
+      <span class="text-brand-purple font-bold">@{{ rName }}</span>
+    }
+    {{ comment.content }}
+  </p>
+  <!-- card-comment.html — reply form -->
+  @if (isShowReplayComment) {
+    <div
+      class="mt-4 lg:mt-4.5 lg:ml-0 ml-[calc((40px+16px)*-1)] flex flex-col lg:flex-row justify-end items-start gap-4"
+    >
+      <app-text-field
+        type="textarea"
+        [placeholder]="'Type your reply...'"
+        class="flex-1 w-full"
+        [maxLength]="replyMaxLength"
+      ></app-text-field>
+      <!--(valueChange)="replyText.set($event)"-->
+      <button
+        appButton
+        variant="purple"
+        type="button"
+        (click)="submitReply()"
+        class="ml-auto block"
+      >
+        Post Reply
+      </button>
+    </div>
+  }
+</div>
