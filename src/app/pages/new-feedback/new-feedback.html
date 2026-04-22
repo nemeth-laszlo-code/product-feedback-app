@@ -1,0 +1,50 @@
+<div class="lg:max-w-[540px] mx-auto mt-[92px] px-6 lg:px-0">
+  <div class="">
+    <button appButton variantType="link" [icon]="'caret'" routerLink="/" class="pl-0!">
+      Go Back
+    </button>
+  </div>
+
+  <form
+    class="px-6 pb-6 pt-[44px] lg:pb-[40px] lg:pt-[52px] lg:px-[42px] rounded-[10px] relative mt-[55px] bg-ghost-white"
+    [formGroup]="addFeedbackFrom"
+    (submit)="onSubmit()"
+  >
+    <img
+      src="shared/icon-new-feedback.svg"
+      alt="new feedback icon"
+      title="new feedback icon"
+      class="w-10 aspect-square lg:w-14 absolute top-[-20px] lg:top-[-28px]"
+    />
+    <h2 class="text-h3 lg:text-h1">Create New Feedback</h2>
+    <app-text-field
+      [type]="'input'"
+      label="Feedback Title"
+      info="Add a short descriptive headline"
+      class="mt-10 block"
+      formControlName="title"
+    ></app-text-field>
+
+    <app-dropdown
+      [label]="'Category'"
+      [info]="'Choose a category for your feedback'"
+      [options]="categoryDropdownItem"
+      [selected]="this.store.selectedCategory()"
+      formControlName="category"
+      class="mt-6 block"
+    ></app-dropdown>
+
+    <app-text-field
+      [type]="'textarea'"
+      label="Feedback Detail"
+      info="Add a short descriptive headline"
+      class="mt-6 block"
+      formControlName="detail"
+    ></app-text-field>
+
+    <div class="flex flex-col-reverse justify-end gap-4 mt-8 lg:flex-row">
+      <button appButton variant="dark" type="reset" routerLink="/">Cancel</button>
+      <button appButton variant="purple" type="submit">Add Feedback</button>
+    </div>
+  </form>
+</div>
