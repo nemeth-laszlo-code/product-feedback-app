@@ -1,0 +1,67 @@
+<div class="max-w-[1440px] mx-auto lg:py-[56px] lg:px-10">
+  <header
+    class="bg-navy-dark p-6 lg:p-8 xl:p-10 flex flex-row justify-between w-full lg:rounded-[10px]"
+  >
+    <div>
+      <a
+        appButton
+        variantType="link"
+        [icon]="'caret'"
+        class="text-ghost-white! m-0 p-0!"
+        routerLink="/"
+        >Go Back</a
+      >
+      <h1 class="text-h1 text-ghost-white">Roadmap</h1>
+    </div>
+    <button appButton variant="purple" routerLink="/new-feedback">+ Add Feedback</button>
+  </header>
+
+  <!-- Mobile tab fejléc -->
+  <div class="flex lg:hidden border-b border-navy-dark/25">
+    @for (tab of tabKeys(); track tab) {
+      <button
+        class="flex-1 py-5 text-h4 transition-colors cursor-pointer"
+        [class.text-navy-dark]="activeTab() === tabs()[tab].status"
+        [class.text-navy-muted]="activeTab() !== tabs()[tab].status"
+        (click)="activeTab.set(tabs()[tab].status)"
+      >
+        {{ tabs()[tab].label }} ({{ store.roadmap()[tabs()[tab].status]?.count }})
+      </button>
+
+      <!-- Aktív tab indicator -->
+      @if (activeTab() === tabs()[tab].status) {
+        <div class="h-1 rounded-t-full" [ngClass]="tabs()[tab].color"></div>
+      }
+    }
+  </div>
+
+  <!-- Grid: mobile = csak aktív tab, desktop = mind -->
+  <div class="lg:grid lg:grid-cols-3 lg:gap-6">
+    @for (tab of tabKeys(); track tab) {
+      <!-- Mobilon csak az aktív látszik -->
+      <div
+        [class.hidden]="activeTab() !== tabs()[tab].status"
+        class="lg:block p-6 lg:px-0 lg:py-8 xl:py-12"
+      >
+        <!-- Oszlop fejléc -->
+        <div class="flex items-center gap-4 mb-6">
+          <span class="w-2 aspect-square rounded-full" [ngClass]="tabs()[tab].color"></span>
+          <h2 class="text-h3">
+            {{ tabs()[tab].label }} ({{ store.roadmap()[tabs()[tab].status].count }})
+          </h2>
+        </div>
+        <p class="text-body-1 text-navy-muted mb-6">
+          {{ tabs()[tab].info }}
+        </p>
+
+        <!-- Kártyák -->
+        @for (item of store.roadmapItems()[tabs()[tab].status]; track item.id) {
+          <app-card-roadmap
+            [roadmapItem]="item"
+            [routerLink]="'/feedback-detail/' + item.id"
+          ></app-card-roadmap>
+        }
+      </div>
+    }
+  </div>
+</div>
