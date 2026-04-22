@@ -5,7 +5,7 @@
     @apply font-bold transition-colors cursor-pointer   
     text-sm tracking-normal text-nowrap
 
-    px-10 pt-[13px] pb-[11px]
+    px-6 pt-[13px] pb-[11px]
     text-ghost-white2
     rounded-[10px];
 }
@@ -60,7 +60,7 @@
 
 /* ---- Icon ---- */
 :host(.has-icon) {
-    @apply inline-flex items-center justify-center  py-4 px-10 items-center gap-2;
+    @apply inline-flex items-center justify-center  py-4 px-10  gap-4;
 }
 :host(.has-icon) .icon {
     @apply text-sm leading-none;

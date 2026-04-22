@@ -12,7 +12,7 @@ type ButtonIcon = 'caret' | 'none';
   styleUrl: './button.css',
   template: `
     @if (icon() !== 'none') {
-      <svg width="7" class="icon" height="10" xmlns="http://www.w3.org/2000/svg">
+      <svg width="7" class="icon text-brand-blue" height="10" xmlns="http://www.w3.org/2000/svg">
         <path
           d="M6 9L2 5l4-4"
           stroke="currentColor"
@@ -27,7 +27,7 @@ type ButtonIcon = 'caret' | 'none';
 })
 export class ButtonComponent {
   variant = input<ButtonVariant>('transparent');
-  type = input<ButtonType>('normal');
+  variantType = input<ButtonType>('normal');
   icon = input<ButtonIcon>('none');
 
   disabled = input<boolean>(false);
@@ -48,7 +48,7 @@ export class ButtonComponent {
     };
 
     return [
-      typeClasses[this.type()],
+      typeClasses[this.variantType()],
       variantClasses[this.variant()],
 
       this.icon() !== 'none' ? 'has-icon' : '',
