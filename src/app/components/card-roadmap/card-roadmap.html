@@ -1,0 +1,35 @@
+@let item = roadmapItem();
+
+@if (item) {
+  @let commentsCount = item.comments ? item.comments.length : 0;
+  <div class="rounded-t-[10px] overflow-clip p-6 text-body-3 bg-ghost-white select-none">
+    <div
+      class="h-1.5 relative w-[calc(100%+48px)] left-[-24px] top-[-24px] text-navy-muted"
+      [ngClass]="color()"
+    ></div>
+    <div>
+      <span
+        class="w-2 aspect-square bg-brand-peach rounded-full inline-block mr-4"
+        [ngClass]="color()"
+      ></span>
+      Planned
+    </div>
+    <h3 class="font-bold mt-4">{{ item.title }}</h3>
+    <p class="text-navy-muted mt-2">{{ item.description }}</p>
+    <app-badge class="mt-2 block">{{ item.category }}</app-badge>
+    <div class="flex">
+      <app-badge class="mt-2 block" [icon]="'caret'" iconOrder="horizontal">{{
+        item.upvotes
+      }}</app-badge>
+
+      <span
+        class="text-body-1 font-bold flex items-center gap-2 ml-auto"
+        [class.text-navy-dark/50]="commentsCount === 0"
+      >
+        <img src="shared/icon-comments.svg" alt="comment icon" title="comment icon" />
+
+        {{ commentsCount }}
+      </span>
+    </div>
+  </div>
+}
