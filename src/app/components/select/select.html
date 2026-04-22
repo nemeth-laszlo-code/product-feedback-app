@@ -1,9 +1,11 @@
 <div class="w-full relative">
-  <p class="mb-2 text-body-1 text-navy-dark">{{ label() }}</p>
+  @if (label()) {
+    <p class="mb-2 text-body-1 text-navy-dark">{{ label() }}</p>
+  }
 
   <button type="button" (click)="toggle()" class="select" [class.opened]="isOpen">
-    <span
-      >Sort by: <b>{{ selectedValue }}</b></span
+    <span class="mr-2.5"
+      >Sort by: <b>{{ selectedValue().label }}</b></span
     >
 
     <svg
@@ -29,8 +31,8 @@
       @for (option of options(); track option) {
         <li>
           <button type="button" (click)="select(option)" class="select-list-item">
-            {{ option }}
-            @if (option === selectedValue) {
+            {{ option.label }}
+            @if (option.value === selectedValue().value) {
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="13"

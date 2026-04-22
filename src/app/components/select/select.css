@@ -1,7 +1,7 @@
 @reference '../../../styles.css';
 
 .select {
-    @apply flex h-12 w-full items-center justify-between rounded-[5px] border border-transparent bg-navy-dark   text-body-1 cursor-pointer   transition-colors text-ghost-white2 hover:bg-navy-dark/80 py-6.5 px-4.5;
+    @apply flex h-12 w-full items-center justify-between rounded-[5px] text-nowrap border border-transparent bg-navy-dark   text-body-1 cursor-pointer   transition-colors text-ghost-white2 hover:bg-navy-dark/80 py-6.5 px-4.5;
 
     /*&.opened {
         @apply rounded-bl-none rounded-br-none rounded-[10px]  text-navy-muted active:border-transparent focus:border-transparent bg-ghost-white! z-100 relative;
