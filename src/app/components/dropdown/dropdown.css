@@ -1,7 +1,7 @@
 @reference '../../../styles.css';
 
 .dropdown {
-    @apply flex h-12 w-full items-center justify-between rounded-[5px] border border-transparent bg-ghost-light px-6 py-[13px] text-body-1 cursor-pointer  focus:border-brand-blue transition-colors;
+    @apply flex h-12 w-full items-center justify-between rounded-[5px] border border-transparent bg-ghost-light px-6 py-[13px] text-body-1 cursor-pointer   transition-colors focus:outline-0 focus-visible:outline-brand-blue focus-visible:outline-1;
 
     &.opened {
         @apply rounded-bl-none rounded-br-none rounded-[10px]  text-navy-muted active:border-transparent focus:border-transparent bg-ghost-white! z-100 relative;
