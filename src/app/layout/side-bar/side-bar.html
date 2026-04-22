@@ -1,0 +1,63 @@
+<div class="space-y-6 lg:flex lg:gap-2.5 xl:flex-col">
+  <div
+    class="radial-gradient-background lg:pt-[62px] lg:px-6 lg:pb-6 lg:rounded-[10px] select-none flex justify-between px-6 py-4 items-center relative lg:flex-1/3"
+  >
+    <div class="">
+      <h1 class="text-h2 text-ghost-white">Frontend Mentor</h1>
+      <p class="text-body-2 text-ghost-white">Feedback Board</p>
+    </div>
+    <a class="lg:hidden text-ghost-white cursor-pointer" (click)="toggleMenu()">
+      @if (menuOpen) {
+        <img src="shared/mobile/icon-close.svg" alt="icon close" />
+      } @else {
+        <img src="shared/mobile/icon-hamburger.svg" alt="icon close" />
+      }
+    </a>
+  </div>
+
+  @if (menuOpen || isDesktop()) {
+    <div
+      class="absolute top-[83px] right-0 z-100 w-[270px] flex flex-col gap-y-6 p-6 lg:static lg:flex-row lg:w-auto lg:p-0 lg:flex-2/3 lg:gap-2.5 xl:flex-col"
+    >
+      @let selectedCategory = store.selectedCategory();
+      <div class="flex gap-x-2 gap-y-[14px] lg:flex-1 flex-wrap card">
+        @for (badge of categoryBadgeItems; track $index) {
+          <app-badge
+            [selected]="selectedCategory === badge.value"
+            (click)="store.selectCategory(badge.value)"
+            >{{ badge.label }}</app-badge
+          >
+        }
+      </div>
+
+      <div class="card rounded-[10px] lg:flex-1">
+        <div class="card-header flex justify-between items-center">
+          <h2 class="text-h3">Roadmap</h2>
+          <a appButton variantType="link" class="text-brand-blue! underline" routerLink="/roadmap"
+            >View</a
+          >
+        </div>
+        <div class="mt-6 flex items-center">
+          <span class="bg-brand-peach w-2 aspect-square rounded-full inline-block mr-4"></span>
+          <span class="text-body-1">{{ store.roadmap().planned.title }} </span>
+          <span class="ml-auto inline-block font-bold">{{ store.roadmap().planned.count }} </span>
+        </div>
+
+        <div class="mt-6 flex items-center">
+          <span class="bg-brand-purple w-2 aspect-square rounded-full inline-block mr-4"></span>
+          <span class="text-body-1">{{ store.roadmap().inProgress.title }} </span>
+          <span class="ml-auto inline-block font-bold"
+            >{{ store.roadmap().inProgress.count }}
+          </span>
+        </div>
+        <div class="mt-6 flex items-center">
+          <span class="bg-[#62BCFA] w-2 aspect-square rounded-full inline-block mr-4"></span>
+          <span class="text-body-1">{{ store.roadmap().inProgress.title }} </span>
+          <span class="ml-auto inline-block font-bold"
+            >{{ store.roadmap().inProgress.count }}
+          </span>
+        </div>
+      </div>
+    </div>
+  }
+</div>

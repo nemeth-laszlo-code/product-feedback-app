@@ -1,0 +1,15 @@
+@reference '../../../styles.css';
+.radial-gradient-background {
+    background: radial-gradient(circle at 0% 150%, #28a7ed 0%, #a337f6 53%, #e84d70 100%);
+}
+
+.custom-backdrop {
+    &::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        top: 83px;
+        background-color: rgba(0, 0, 0, 0.582);
+        z-index: -1;
+    }
+}
