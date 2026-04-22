@@ -1,0 +1,87 @@
+<div class="lg:max-w-[730px] mx-auto mt-20">
+  <div class="flex justify-between">
+    <button appButton variantType="link" routerLink="/" icon="caret">Go Back</button>
+    <button appButton variantType="normal" variant="blue" routerLink="/edit-feedback">
+      Edit Feedback
+    </button>
+  </div>
+  @let request = store.selectedRequest();
+
+  @if (request) {
+    <app-card-suggestion [suggestionItem]="request" class="mt-6 block"></app-card-suggestion>
+
+    <!-- comments list-->
+    <div class="bg-ghost-white rounded-[10px] p-6 lg:p-8 mt-6">
+      <h2 class="text-h3">{{ request.comments?.length }} Comments</h2>
+      <div class="divide-y divide-navy-dark/10">
+        @for (comment of request.comments; track comment.id) {
+          @let commentImagePath = comment.user.image.replace('/assets/', '').replace('.', '');
+          <div class="py-6">
+            <div class="flex gap-4 lg:gap-8">
+              <!-- Fő komment avatar + vonal -->
+              <div class="flex flex-col items-center shrink-0">
+                <img
+                  [src]="commentImagePath"
+                  [alt]="comment.user.name + ' profile picture'"
+                  class="w-10 h-10 rounded-full"
+                />
+                @if (comment.replies?.length) {
+                  <div class="w-[1px] flex-1 mt-4 bg-navy-dark/10"></div>
+                }
+              </div>
+
+              <!-- Fő komment tartalom + reply-ok -->
+              <div class="flex-1">
+                <app-card-comment [commentItem]="comment" />
+
+                @if (comment.replies?.length) {
+                  <div class="mt-6 space-y-6 lg:ml-[-40px]">
+                    @for (reply of comment.replies; track reply.replyingTo) {
+                      @let replyImagePath =
+                        reply.user.image.replace('/assets/', '').replace('.', '');
+
+                      <!-- ✅ Reply: ugyanolyan struktúra mint a fő komment -->
+                      <div class="flex gap-4 lg:gap-8">
+                        <div class="shrink-0">
+                          <img
+                            [src]="replyImagePath"
+                            [alt]="reply.user.name + ' profile picture'"
+                            class="w-10 h-10 rounded-full"
+                          />
+                        </div>
+                        <div class="flex-1">
+                          <app-card-comment [commentItem]="reply" [replayName]="reply.replyingTo" />
+                        </div>
+                      </div>
+                    }
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- add new comment -->
+    <div class="bg-ghost-white rounded-[10px] p-6 lg:p-8">
+      <h2 class="text-h3">Add Comment</h2>
+
+      <app-text-field
+        [type]="'textarea'"
+        placeholder="Type your comment here"
+        [value]="newComment()"
+        (input)="onInput($event)"
+        [maxLength]="commentMaxLength"
+        class="mt-6 block"
+      ></app-text-field>
+
+      <div class="flex items-center justify-between mt-4 flex-wrap">
+        <span class="text-nowrap"
+          >{{ commentMaxLength - newComment().length }} Characters left</span
+        >
+        <button appButton variant="purple">Post Comment</button>
+      </div>
+    </div>
+  }
+</div>
