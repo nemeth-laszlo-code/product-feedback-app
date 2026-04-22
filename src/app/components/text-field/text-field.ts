@@ -1,6 +1,6 @@
-import { Component, Optional, Self, input, signal } from '@angular/core';
+import { Component, Optional, Self, effect, inject, input, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ControlValueAccessor, NgControl } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
 
 @Component({
   selector: 'app-text-field',
@@ -11,21 +11,29 @@ import { ControlValueAccessor, NgControl } from '@angular/forms';
 })
 export class TextFieldComponent implements ControlValueAccessor {
   label = input('');
+  info = input('');
   placeholder = input('');
   errorMessage = input("Can't be empty");
+  value = input('');
   invalid = input(false);
   type = input<'input' | 'textarea'>('input');
+  maxLength = input(250);
 
-  value = signal('');
+  internalValue = signal('');
   disabled = signal(false);
+  name = input('input');
 
   private onChange: (value: string) => void = () => {};
   private onTouched: () => void = () => {};
-
-  constructor(@Optional() @Self() public ngControl: NgControl | null) {
+  private ngControl = inject(NgControl, { optional: true, self: true });
+  /**@Optional() @Self() public ngControl: NgControl | null */
+  constructor() {
     if (this.ngControl) {
       this.ngControl.valueAccessor = this;
     }
+    effect(() => {
+      this.internalValue.set(this.value());
+    });
   }
 
   get showError(): boolean {
@@ -38,7 +46,7 @@ export class TextFieldComponent implements ControlValueAccessor {
 
   onInput(event: Event): void {
     const nextValue = (event.target as HTMLInputElement | HTMLTextAreaElement).value;
-    this.value.set(nextValue);
+    this.internalValue.set(nextValue);
     this.onChange(nextValue);
   }
 
@@ -48,7 +56,7 @@ export class TextFieldComponent implements ControlValueAccessor {
 
   // ControlValueAccessor
   writeValue(value: string | null): void {
-    this.value.set(value ?? '');
+    this.internalValue.set(value ?? '');
   }
 
   registerOnChange(fn: (value: string) => void): void {

@@ -1,38 +1,52 @@
 <div class="w-full block">
-  <p class="mb-2 text-body-m text-brand-grey-medium">{{ label() }}</p>
-
+  @let labelValue = label();
+  @let infoValue = info();
+  @if (labelValue) {
+    <label
+      class="mb-2 text-body-m text-navy-dark font-bold text-[13px] lg:text-[14px]"
+      [attr.for]="name()"
+      >{{ labelValue }}</label
+    >
+  }
+  @if (infoValue) {
+    <span class="block text-[13px] lg:text-[14px] text-navy-muted mb-4 mt-0.5">{{
+      infoValue
+    }}</span>
+  }
   <div class="">
     @if (type() === 'input') {
       <input
         type="text"
+        [id]="name()"
+        [attr.name]="name()"
         [placeholder]="placeholder()"
-        [value]="value()"
+        [value]="internalValue()"
         [disabled]="disabled()"
         (input)="onInput($event)"
         (blur)="onBlur()"
+        [maxLength]="maxLength()"
         class="input text-input"
-        [ngClass]="{
-          'border-brand-red!': showError,
-        }"
+        [class.border-brand-red]="showError"
       />
     } @else if (type() === 'textarea') {
       <textarea
         rows="4"
+        [id]="name()"
+        [attr.name]="name()"
         [placeholder]="placeholder()"
         [disabled]="disabled()"
         (input)="onInput($event)"
         (blur)="onBlur()"
-        [value]="value()"
+        [value]="internalValue()"
         class="input text-area"
-        [ngClass]="{
-          'border-brand-red!': showError,
-        }"
+        [maxLength]="maxLength()"
+        [class.border-brand-red]="showError"
       >
       </textarea>
     }
 
     @if (showError) {
-      <span class="pointer-events-none mt-1 text-body-l text-brand-red">
+      <span class="pointer-events-none mt-1 block text-body-l text-brand-red">
         {{ errorMessage() }}
       </span>
     }
