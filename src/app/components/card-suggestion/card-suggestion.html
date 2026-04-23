@@ -1,20 +1,28 @@
-<div class="py-[28px] px-8 bg-ghost-white rounded-[10px] flex lg:gap-10 select-none">
-  <div>
-    <app-badge [icon]="'caret'">{{ suggestionItem().upvotes }}</app-badge>
+<div
+  class="py-[28px] px-8 bg-ghost-white rounded-[10px] grid grid-cols-2 lg:grid-cols-[auto_1fr_auto] lg:gap-10 select-none gap-4"
+>
+  <div class="col-start-1 row-start-2 lg:row-start-1">
+    <app-badge [icon]="'caret'" [iconOrder]="isLg().matches ? 'vertical' : 'horizontal'">{{
+      suggestionItem().upvotes
+    }}</app-badge>
   </div>
-  <div>
-    <h3 class="text-h3">
+  <div class="col-start-1 row-start-1 col-end-3 lg:col-start-2">
+    <h3
+      class="text-h3 hover:text-brand-blue transition-colors duration-300 cursor-pointer"
+      [routerLink]="'/feedback-detail/' + suggestionItem().id"
+    >
       {{ suggestionItem().title }}
     </h3>
-    <p class="text-body-1 mt-1">
+    <p class="text-body-1 mt-1 text-navy-muted">
       {{ suggestionItem().description }}
     </p>
-    <app-badge class="mt-3 inline-block">{{ suggestionItem().category }}</app-badge>
-    <div></div>
+
+    <app-badge class="mt-2 lg:mt-3 inline-block">{{ suggestionItem().category }}</app-badge>
   </div>
+
   @let commentsCount = suggestionItem().comments ? suggestionItem().comments?.length : 0;
   <span
-    class="text-body-1 font-bold flex items-center gap-2 ml-auto"
+    class="text-body-1 font-bold flex items-center gap-2 ml-auto col-start-2 row-start-2 lg:col-start-3 lg:row-start-1"
     [class.text-navy-dark/50]="commentsCount === 0"
   >
     <img src="shared/icon-comments.svg" alt="comment icon" title="comment icon" />
