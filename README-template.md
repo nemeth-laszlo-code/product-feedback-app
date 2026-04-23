@@ -17,6 +17,7 @@ This is a solution to the [Product feedback app challenge on Frontend Mentor](ht
     - [Useful resources](#useful-resources)
   - [Author](#author)
   - [Acknowledgments](#acknowledgments)
+- [Store mukodese](#store-mukodese)
 
 **Note: Delete this note and update the table of contents based on what sections you keep.**
 
@@ -120,3 +121,18 @@ Use this section to outline areas that you want to continue focusing on in futur
 This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
 
 **Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**
+
+# Store mukodese
+
+// Bármelyik komponensben
+store = inject(FeedbackStore);
+
+// Template-ben
+store.suggestions() // szűrt + sortolt suggestion lista
+store.selectedCategory() // aktív kategória filter
+store.roadmap() // { planned: 2, inProgress: 3, live: 1 }
+store.sortBy() // aktív rendezés
+
+store.selectCategory('ui') // filter váltás
+store.setSortBy('most-comments')
+store.upvote(1)

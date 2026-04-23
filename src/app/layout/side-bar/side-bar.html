@@ -17,10 +17,13 @@
 
   @if (menuOpen || isDesktop()) {
     <div
-      class="absolute top-[83px] right-0 z-100 w-[270px] flex flex-col gap-y-6 p-6 lg:static lg:flex-row lg:w-auto lg:p-0 lg:flex-2/3 lg:gap-2.5 xl:flex-col"
+      class="absolute top-[83px] right-0 z-100 w-[270px] flex flex-col gap-y-6 p-6 lg:static lg:flex-row lg:w-auto lg:p-0 lg:flex-2/3 lg:gap-2.5 xl:flex-col bg-ghost-light lg:bg-transparent"
+      [class.custom-backdrop2]="menuOpen"
     >
       @let selectedCategory = store.selectedCategory();
-      <div class="flex gap-x-2 gap-y-[14px] lg:flex-1 flex-wrap card">
+      <div
+        class="flex gap-x-2 gap-y-[14px] lg:flex-1 flex-wrap lg:p-6 bg-ghost-white rounded-[10px];"
+      >
         @for (badge of categoryBadgeItems; track $index) {
           <app-badge
             [selected]="selectedCategory === badge.value"

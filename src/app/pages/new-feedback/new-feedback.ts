@@ -7,6 +7,7 @@ import { TextFieldComponent } from '../../components/text-field/text-field';
 import { DropdownComponent } from '../../components/dropdown/dropdown';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Category, CATEGORY_OPTIONS, ProductRequest } from '../../shared/feedback.model';
+import { Select } from '../../components/select/select';
 
 @Component({
   selector: 'app-new-feedback',
@@ -17,6 +18,7 @@ import { Category, CATEGORY_OPTIONS, ProductRequest } from '../../shared/feedbac
     ButtonComponent,
     DropdownComponent,
     ReactiveFormsModule,
+    Select,
   ],
   templateUrl: './new-feedback.html',
   styleUrl: './new-feedback.css',

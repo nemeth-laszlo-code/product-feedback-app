@@ -15,6 +15,7 @@ interface SelectItem {
 })
 export class Select {
   label = input<string>('');
+  info = input<string>('');
   options = input.required<SelectItem[]>();
   selected = input<string>();
 

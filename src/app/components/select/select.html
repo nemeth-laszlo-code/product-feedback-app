@@ -2,6 +2,9 @@
   @if (label()) {
     <p class="mb-2 text-body-1 text-navy-dark">{{ label() }}</p>
   }
+  @if (info()) {
+    <span class="block text-[13px] lg:text-[14px] text-navy-muted mb-4 mt-0.5">{{ info() }}</span>
+  }
 
   <button type="button" (click)="toggle()" class="select" [class.opened]="isOpen">
     <span class="mr-2.5"

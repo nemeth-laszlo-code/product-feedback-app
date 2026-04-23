@@ -5,10 +5,11 @@ import { FeedbackStore } from '../../shared/feedback.store';
 import { Badge } from '../../components/badge/badge';
 import { ButtonComponent } from '../../components/button/button';
 import { RouterLink } from '@angular/router';
+import { CardSuggestion } from '../../components/card-suggestion/card-suggestion';
 
 @Component({
   selector: 'app-suggestions',
-  imports: [SideBar, Header, Badge, ButtonComponent, RouterLink],
+  imports: [SideBar, Header, Badge, ButtonComponent, RouterLink, CardSuggestion],
   templateUrl: './suggestions.html',
   styleUrl: './suggestions.css',
 })

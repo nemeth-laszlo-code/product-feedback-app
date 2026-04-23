@@ -1,0 +1,53 @@
+<div class="flex flex-col gap-2 mt-4">
+  <h2 class="text-h2">badge component</h2>
+  <app-badge [icon]="'caret'">99</app-badge>
+  <app-badge>ux</app-badge>
+</div>
+
+<div class="flex flex-col gap-2 mt-4">
+  <h2 class="text-h2">Select component</h2>
+  <app-select [options]="[{ value: '1', label: 'label' }]"></app-select>
+</div>
+
+<div>
+  <h1 class="text-h1">Typography</h1>
+  <h1 class="text-h1">Text-h1</h1>
+  <h2 class="text-h2">Text-h2</h2>
+  <h3 class="text-h3">Text-h3</h3>
+  <h4 class="text-h4">Text-h4</h4>
+</div>
+
+<div class="mt-4 flex flex-col gap-3">
+  <h2 class="text-h2">Button variants</h2>
+  <div class="flex gap-2">
+    <!-- Sima gombok -->
+    <button appButton variant="purple">Button 1</button>
+    <button appButton variant="blue">Button 2</button>
+    <button appButton variant="dark">Button 3</button>
+    <button appButton variant="red">Button 4</button>
+  </div>
+  <div class="flex gap-2">
+    <!-- Ikonos link gombok -->
+    <button appButton variant="dark" icon="caret">Button 1</button>
+    <button appButton icon="caret" type="link">Button 1</button>
+    <button appButton icon="caret" type="link">Button 2</button>
+  </div>
+  <div class="flex gap-2">
+    <!-- Small méret -->
+    <button appButton variant="purple">Button 1</button>
+
+    <!-- Disabled -->
+    <button appButton variant="purple" [disabled]="true">Button 1</button>
+  </div>
+</div>
+
+<div class="flex flex-col gap-2 mt-4">
+  <h2 class="text-h2">Textfield components</h2>
+  <app-text-field></app-text-field>
+  <app-text-field [invalid]="true"></app-text-field>
+</div>
+
+<div class="flex flex-col gap-2 mt-4">
+  <h2 class="text-h2">Dropdown components</h2>
+  <app-dropdown [options]="[{ value: '1', label: 'label' }]"></app-dropdown>
+</div>
