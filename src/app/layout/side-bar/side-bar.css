@@ -1,4 +1,8 @@
 @reference '../../../styles.css';
+.sidebar {
+    --sidebar-height: 73px;
+}
+
 .radial-gradient-background {
     background: radial-gradient(circle at 0% 150%, #28a7ed 0%, #a337f6 53%, #e84d70 100%);
 }
@@ -8,7 +12,7 @@
         content: "";
         position: fixed;
         inset: 0;
-        top: 83px;
+        top: var(--sidebar-height);
         background-color: rgba(0, 0, 0, 0.582);
         z-index: 100;
     }
