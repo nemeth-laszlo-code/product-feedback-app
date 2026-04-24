@@ -6,7 +6,7 @@
   </section>
   <section class="flex-1 xl:flex-4/5">
     <app-header></app-header>
-    <div class="lg:space-y-5">
+    <div class="lg:space-y-5 mt-8 lg:mt-6">
       @for (suggestion of store.suggestions(); track suggestion.id) {
         <app-card-suggestion [suggestionItem]="suggestion" class="block"></app-card-suggestion>
       } @empty {
