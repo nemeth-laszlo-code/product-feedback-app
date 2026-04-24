@@ -6,6 +6,8 @@ import { ButtonComponent } from '../../components/button/button';
 import { CardSuggestion } from '../../components/card-suggestion/card-suggestion';
 import { CardComment } from '../../components/card-comment/card-comment';
 import { TextFieldComponent } from '../../components/text-field/text-field';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-feedback-detail',
@@ -20,6 +22,10 @@ export class FeedbackDetail implements OnInit {
   newComment = signal('');
 
   commentMaxLength = 250;
+  breakpoint = inject(BreakpointObserver);
+  isLg = toSignal(this.breakpoint.observe(['(min-width: 1024px)']), {
+    initialValue: { matches: false, breakpoints: {} },
+  });
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
@@ -36,6 +42,19 @@ export class FeedbackDetail implements OnInit {
   addComment() {
     if (!this.newComment().trim()) return;
 
+    this.store.postComment({
+      content: this.newComment(),
+      requestId: this.store.selectedRequestId()!,
+    });
+
     this.newComment.set('');
+  }
+
+  postReplyEvt(comment: { content: string; replyingTo: string }) {
+    this.store.postComment({
+      content: comment.content,
+      replyingTo: comment.replyingTo,
+      requestId: this.store.selectedRequestId()!,
+    });
   }
 }
