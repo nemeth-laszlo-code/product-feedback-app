@@ -27,6 +27,8 @@
         type="textarea"
         [placeholder]="'Type your reply...'"
         class="flex-1 w-full"
+        [value]="replyText()"
+        (input)="onInput($event)"
         [maxLength]="replyMaxLength"
       ></app-text-field>
       <!--(valueChange)="replyText.set($event)"-->

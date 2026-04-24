@@ -12,12 +12,13 @@ import { ButtonComponent } from '../button/button';
 })
 export class CardComment {
   commentItem = input.required<Omit<FeedbackComment, 'id'> & { id?: number }>();
+  parentCommentId = input<number | undefined>(undefined);
   replayName = input<string>('');
 
   isShowReplayComment = false;
   replyText = signal('');
 
-  postReply = output<{ content: string; replyingTo: string }>();
+  postReply = output<{ content: string; replyingTo: string; commentId: number | undefined }>();
 
   replyMaxLength = 250;
   toggleReplyComment() {
@@ -30,6 +31,7 @@ export class CardComment {
     this.postReply.emit({
       content: this.replyText(),
       replyingTo: this.commentItem().user.username,
+      commentId: this.parentCommentId() ?? this.commentItem().id, // ← szülő id
     });
 
     this.replyText.set('');
