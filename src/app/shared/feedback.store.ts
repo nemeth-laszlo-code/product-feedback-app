@@ -130,4 +130,13 @@ export class FeedbackStore {
       this.requests.update((state) => state.map((r) => (r.id === updated.id ? updated : r)));
     });
   }
+
+  postComment(payload: { content: string; replyingTo?: string; requestId: number }): void {
+    this.feedbackService.postComment(payload).subscribe((updatedRequest) => {
+      if (!updatedRequest) return;
+      this.requests.update((state) =>
+        state.map((r) => (r.id === updatedRequest.id ? updatedRequest : r)),
+      );
+    });
+  }
 }

@@ -1,7 +1,14 @@
 // feedback.service.ts
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Category, FeedbackData, ProductRequest, Status } from './feedback.model';
+import {
+  Category,
+  FeedbackComment,
+  FeedbackData,
+  ProductRequest,
+  Reply,
+  Status,
+} from './feedback.model';
 import { FEEDBACK_DATA } from './data';
 
 @Injectable({ providedIn: 'root' })
@@ -67,6 +74,53 @@ export class FeedbackService {
     if (!request) return of(undefined);
 
     const updated = { ...request, upvotes: request.upvotes + 1 };
+    return this.updateRequest(updated);
+  }
+  postComment(payload: {
+    content: string;
+    replyingTo?: string;
+    requestId: number;
+    commentId?: number;
+  }): Observable<ProductRequest | undefined> {
+    const request = this.data.productRequests.find((r) => r.id === payload.requestId);
+    if (!request) return of(undefined);
+
+    const currentUser = this.data.currentUser;
+    let updatedComments: FeedbackComment[];
+
+    if (payload.replyingTo) {
+      updatedComments = (request.comments ?? []).map((comment) => {
+        // commentId alapján keresünk, fallback: username egyezés a fő kommentnél
+        const isTarget =
+          payload.commentId !== undefined
+            ? comment.id === payload.commentId
+            : comment.user.username === payload.replyingTo;
+
+        if (!isTarget) return comment;
+
+        const newReply: Reply = {
+          content: payload.content,
+          replyingTo: payload.replyingTo!,
+          user: currentUser,
+        };
+
+        return {
+          ...comment,
+          replies: [...(comment.replies ?? []), newReply],
+        };
+      });
+    } else {
+      // Fő szintű komment
+      const newComment: FeedbackComment = {
+        id: Math.max(0, ...(request.comments ?? []).map((c) => c.id)) + 1,
+        content: payload.content,
+        user: currentUser,
+        replies: [],
+      };
+      updatedComments = [...(request.comments ?? []), newComment];
+    }
+
+    const updated: ProductRequest = { ...request, comments: updatedComments };
     return this.updateRequest(updated);
   }
 }
