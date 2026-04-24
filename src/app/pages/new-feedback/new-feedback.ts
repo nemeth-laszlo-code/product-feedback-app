@@ -2,12 +2,11 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ButtonComponent } from '../../components/button/button';
 import { Router, RouterLink } from '@angular/router';
 import { FeedbackStore } from '../../shared/feedback.store';
-import { Badge } from '../../components/badge/badge';
+
 import { TextFieldComponent } from '../../components/text-field/text-field';
 import { DropdownComponent } from '../../components/dropdown/dropdown';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Category, CATEGORY_OPTIONS, ProductRequest } from '../../shared/feedback.model';
-import { Select } from '../../components/select/select';
 
 @Component({
   selector: 'app-new-feedback',
@@ -18,7 +17,6 @@ import { Select } from '../../components/select/select';
     ButtonComponent,
     DropdownComponent,
     ReactiveFormsModule,
-    Select,
   ],
   templateUrl: './new-feedback.html',
   styleUrl: './new-feedback.css',

@@ -6,7 +6,7 @@ import { ButtonComponent } from '../button/button';
 
 @Component({
   selector: 'app-card-comment',
-  imports: [RouterLink, TextFieldComponent, ButtonComponent],
+  imports: [TextFieldComponent, ButtonComponent],
   templateUrl: './card-comment.html',
   styleUrl: './card-comment.css',
 })

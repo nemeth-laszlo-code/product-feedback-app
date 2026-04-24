@@ -1,6 +1,5 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { FeedbackStore } from '../../shared/feedback.store';
-import { Badge } from '../../components/badge/badge';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ButtonComponent } from '../../components/button/button';
 import { CardSuggestion } from '../../components/card-suggestion/card-suggestion';
@@ -11,7 +10,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-feedback-detail',
-  imports: [Badge, ButtonComponent, CardSuggestion, RouterLink, CardComment, TextFieldComponent],
+  imports: [ButtonComponent, CardSuggestion, RouterLink, CardComment, TextFieldComponent],
   templateUrl: './feedback-detail.html',
   styleUrl: './feedback-detail.css',
 })

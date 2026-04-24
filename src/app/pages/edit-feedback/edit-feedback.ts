@@ -60,7 +60,7 @@ export class EditFeedback {
 
   createForm() {
     const r = this.store.selectedRequest();
-    console.log(r);
+
     this.editFeedbackFrom = new FormGroup({
       title: new FormControl(r?.title ?? '', Validators.required),
       category: new FormControl(r?.category ?? '', Validators.required),
@@ -69,15 +69,12 @@ export class EditFeedback {
     });
   }
   private patchForm(request: ProductRequest): void {
-    console.log('patchForm called', request);
-    console.log('form controls', this.editFeedbackFrom.controls);
     this.editFeedbackFrom.patchValue({
       title: request.title,
       category: request.category,
       status: request.status,
       detail: request.description,
     });
-    console.log('form value after patch', this.editFeedbackFrom.value);
   }
 
   onSubmit() {
