@@ -9,7 +9,7 @@
     }
 }
 .dropdown-list {
-    @apply mt-4 absolute w-full rounded-b-[10px] flex flex-col gap-0 
+    @apply mt-4 absolute w-full rounded-[10px] flex flex-col gap-0 
     text-navy-muted bg-ghost-white   shadow-[0_10px_40px_rgba(55,63,104,0.35)] z-20;
 }
 
